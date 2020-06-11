@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cuadruplas.h"
+#include "tabla_tipos.h"
 
 /* --------------------------- Formato de Documentacion ------------------------- */
 
@@ -26,7 +27,7 @@
 --Autor:
 --Fecha de creacion:
 */
-cuadru *crearCuadrupla(){}
+char* ampliar(char *dir, int t1, int t2, code *codigo, T_Tipos *tabla){}
 
 /*
 --Nombre Funcion:
@@ -34,7 +35,7 @@ cuadru *crearCuadrupla(){}
 --Autor:
 --Fecha de creacion:
 */
-code *crearCodigo(){}
+char* reducir(char *dir, int t1, int t2, code *codigo, T_Tipos *tabla){}
 
 /*
 --Nombre Funcion:
@@ -42,7 +43,7 @@ code *crearCodigo(){}
 --Autor:
 --Fecha de creacion:
 */
-void eliminarCuadrupla(cuadru * c){}
+int max(int t1, int t2, T_Tipos *tabla){}
 
 /*
 --Nombre Funcion:
@@ -50,12 +51,4 @@ void eliminarCuadrupla(cuadru * c){}
 --Autor:
 --Fecha de creacion:
 */
-void eliminarCodigo(code *c){}
-
-/*
---Nombre Funcion:
---Descripcion:
---Autor:
---Fecha de creacion:
-*/
-void agregarCuadrupla(code *codigo, cuadru *cuadrupla){}
+int min(int t1, int t2, T_Tipos *tabla){}
