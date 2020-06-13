@@ -20,13 +20,16 @@ struct CODE{
 
 /* -------------------------Declaracion de Funciones -------------------------- */
 /* Creacion */
-cuadru *crearCuadrupla();                                   //Pendiente
-code *crearCodigo();                                        //Pendiente
+cuadru *crearCuadrupla(char *op, char *arg1, char *arg2, char *res);            //Lista
+code *crearCodigo();                                                            //Lista
 /* Eliminacion */
-void eliminarCuadrupla(cuadru * c);                         //Pendiente
-void eliminarCodigo(code *c);                               //Pendiente
+void eliminarCuadrupla(cuadru *c);                                              //Lista
+void eliminarCodigo(code *c);                                                   //Lista
+/* Impresion */
+void imprimirCuadrupla(cuadru *c);                                              //Lista
+void imprimirCodigo(code *c);                                                   //Lista
 /* Utiles y necesarias */
-void agregarCuadrupla(code *codigo, cuadru *cuadrupla);     //Pendiente
+void agregarCuadrupla(code *codigo, cuadru *cuadrupla);                         //Lista
 
 
 #endif
