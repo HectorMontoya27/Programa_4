@@ -20,13 +20,13 @@ struct LIST_INDEX{
 
 /* -------------------------Declaracion de Funciones -------------------------- */
 /* Creacion */
-index* nuevoIndice();                                               //Pendiente
-listaIndex* nuevaListaIndice();                                     //Pendiente
+index* nuevoIndice(char *i);                                        //Lista
+listaIndex* nuevaListaIndice();                                     //Lista
 /* Eliminacion */
-void eliminarIndice(index *indice);                                 //Pendiente
-void eliminarListaIndice(listaIndex *lista);                        //Pendiente
+void eliminarIndice(index *indice);                                 //Lista
+void eliminarListaIndice(listaIndex *lista);                        //Lista
 /* Utiles y necesarias */
-void agregarIndice(listaIndex *lista, index *indice);               //Pendiente
+void agregarIndice(listaIndex *lista, index *indice);               //Lista
 listaIndex* combinar(listaIndex *lista1, listaIndex *lista2);       //Pendiente
 void backpatch(code *codigo, listaIndex *lista, char *label);       //Pendiente
 

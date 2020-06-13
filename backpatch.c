@@ -22,12 +22,76 @@
 
 /* -------------------------------- Funciones -------------------------------- */
 /*
---Nombre Funcion:
---Descripcion:
---Autor:
---Fecha de creacion:
+--Nombre Funcion: nuevoIndice()
+--Descripcion: Creacion de un nuevo indice
+--Autor: Héctor Montoya Pérez
+--Fecha de creacion: 13 Junio 2020
 */
-index* nuevoIndice(){}
+index* nuevoIndice(char *i){
+    index *indice = (index *)malloc(sizeof(index));
+    indice->indice = i;
+    indice->siguente = NULL;
+    return indice;
+}
+
+/*
+--Nombre Funcion: nuevaListaIndice()
+--Descripcion: Creacion de un nueva lista de indices
+--Autor: Héctor Montoya Pérez
+--Fecha de creacion: 13 Junio 2020
+*/
+listaIndex* nuevaListaIndice(){
+    listaIndex *lista = (listaIndex *)malloc(sizeof(listaIndex));
+    lista->inicio = NULL;
+    lista->final = NULL;
+    return lista;
+}
+
+/*
+--Nombre Funcion: eliminarIndice()
+--Descripcion: Libera la memoria de un indice y los siguentes a el
+--Autor: Héctor Montoya Pérez
+--Fecha de creacion: 13 Junio 2020
+*/
+void eliminarIndice(index *indice){
+    if (indice != NULL) {
+        eliminarIndice(indice->siguente);
+        free(indice);
+    }
+}
+
+/*
+--Nombre Funcion: eliminarListaIndice()
+--Descripcion: Libera la memoria de una lista de indices y de su contenido
+--Autor: Héctor Montoya Pérez
+--Fecha de creacion: 13 Junio 2020
+*/
+void eliminarListaIndice(listaIndex *lista){
+    if (lista != NULL){
+        eliminarIndice(lista->inicio);
+        free(lista);
+    }
+}
+
+/*
+--Nombre Funcion: agregarIndice()
+--Descripcion: Se agrega un nuevo indice a la lista
+--Autor: Héctor Montoya Pérez
+--Fecha de creacion: 13 Junio 2020
+*/
+void agregarIndice(listaIndex *lista, index *indice){
+    if (lista != NULL) {
+        if (indice != NULL) {
+            if (lista->inicio == NULL){
+                lista->inicio = indice;
+                lista->final = indice;
+            } else {
+                lista->final->siguente = indice;
+                lista->final = indice;
+            }
+        } else { printf("No existe el indice a insertar\n"); }
+    } else { printf("No existe la lista referida\n"); }
+}
 
 /*
 --Nombre Funcion:
@@ -35,39 +99,9 @@ index* nuevoIndice(){}
 --Autor:
 --Fecha de creacion:
 */
-listaIndex* nuevaListaIndice(){}
-
-/*
---Nombre Funcion:
---Descripcion:
---Autor:
---Fecha de creacion:
-*/
-void eliminarIndice(index *indice){}
-
-/*
---Nombre Funcion:
---Descripcion:
---Autor:
---Fecha de creacion:
-*/
-void eliminarListaIndice(listaIndex *lista){}
-
-/*
---Nombre Funcion:
---Descripcion:
---Autor:
---Fecha de creacion:
-*/
-void agregarIndice(listaIndex *lista, index *indice){}
-
-/*
---Nombre Funcion:
---Descripcion:
---Autor:
---Fecha de creacion:
-*/
-listaIndex* combinar(listaIndex *lista1, listaIndex *lista2){}
+listaIndex* combinar(listaIndex *lista1, listaIndex *lista2){
+    
+}
 
 /*
 --Nombre Funcion:
