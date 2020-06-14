@@ -27,8 +27,9 @@
 --Autor: Héctor Montoya Pérez
 --Fecha de creacion: 13 Junio 2020
 */
-index* nuevoIndice(char *i){
-    index *indice = (index *)malloc(sizeof(index));
+
+Indice* nuevoIndice(char *i){
+    Indice *indice = (Indice *)malloc(sizeof(Indice));
     indice->indice = i;
     indice->siguente = NULL;
     return indice;
@@ -40,8 +41,8 @@ index* nuevoIndice(char *i){
 --Autor: Héctor Montoya Pérez
 --Fecha de creacion: 13 Junio 2020
 */
-listaIndex* nuevaListaIndice(){
-    listaIndex *lista = (listaIndex *)malloc(sizeof(listaIndex));
+listaIndice* nuevaListaIndice(){
+    listaIndice *lista = (listaIndice *)malloc(sizeof(listaIndice));
     lista->inicio = NULL;
     lista->final = NULL;
     return lista;
@@ -53,10 +54,11 @@ listaIndex* nuevaListaIndice(){
 --Autor: Héctor Montoya Pérez
 --Fecha de creacion: 13 Junio 2020
 */
-void eliminarIndice(index *indice){
+void eliminarIndice(Indice *indice){
     if (indice != NULL) {
         eliminarIndice(indice->siguente);
         free(indice);
+        indice = NULL;
     }
 }
 
@@ -66,10 +68,28 @@ void eliminarIndice(index *indice){
 --Autor: Héctor Montoya Pérez
 --Fecha de creacion: 13 Junio 2020
 */
-void eliminarListaIndice(listaIndex *lista){
+void eliminarListaIndice(listaIndice *lista){
     if (lista != NULL){
         eliminarIndice(lista->inicio);
         free(lista);
+        lista = NULL;
+    }
+}
+
+/*
+--Nombre Funcion: imprimirLista()
+--Descripcion: Imprime una lista de indices
+--Autor: Héctor Montoya Pérez
+--Fecha de creacion: 13 Junio 2020
+*/
+void imprimirListaIndice(listaIndice *lista){
+    if (lista != NULL) {
+        Indice *i = lista->inicio;
+        while (i != NULL) {
+            printf("%s ", i->indice);
+            i = i->siguente;
+        }
+        printf("\n");
     }
 }
 
@@ -79,7 +99,7 @@ void eliminarListaIndice(listaIndex *lista){
 --Autor: Héctor Montoya Pérez
 --Fecha de creacion: 13 Junio 2020
 */
-void agregarIndice(listaIndex *lista, index *indice){
+void agregarIndice(listaIndice *lista, Indice *indice){
     if (lista != NULL) {
         if (indice != NULL) {
             if (lista->inicio == NULL){
@@ -94,19 +114,43 @@ void agregarIndice(listaIndex *lista, index *indice){
 }
 
 /*
---Nombre Funcion:
---Descripcion:
---Autor:
---Fecha de creacion:
+--Nombre Funcion: combinar()
+--Descripcion: Combina el contenido de las lista y regresa en una unica lista, por lo que la otra lista es eliminada
+--Autor: Héctor Montoya Pérez
+--Fecha de creacion: 13 Junio 2020
 */
-listaIndex* combinar(listaIndex *lista1, listaIndex *lista2){
-    
+listaIndice* combinar(listaIndice *lista1, listaIndice *lista2){
+    if (lista1 == NULL && lista2 == NULL) { return NULL; }
+    if (lista1 == NULL) { return lista2; }
+    if (lista2 == NULL) { return lista1; }
+    Indice *indice = lista2->inicio;
+    lista1->final->siguente = lista2->inicio;
+    lista1->final = lista2->final;
+    lista2->inicio = NULL;
+    eliminarListaIndice(lista2);
+    return lista1;
 }
 
 /*
---Nombre Funcion:
---Descripcion:
---Autor:
---Fecha de creacion:
+--Nombre Funcion: backpatch()
+--Descripcion: Busca en las cuadruplas cada uno de los indices de la lista y los sustituye con el argumento label
+--Autor: Héctor Montoya Pérez
+--Fecha de creacion: 13 Junio 2020
 */
-void backpatch(code *codigo, listaIndex *lista, char *label){}
+void backpatch(code *codigo, listaIndice *lista, char *label){
+    if (codigo != NULL && lista != NULL && label != NULL){
+        cuadru *cuadrupla;
+        Indice *i = lista->inicio;
+        while (i != NULL) {
+            cuadrupla = codigo->inicio;
+            while (cuadrupla != NULL) {
+                if (strcmp(cuadrupla->op  ,i->indice) == 0) { cuadrupla->op   = label; }
+                if (strcmp(cuadrupla->arg1,i->indice) == 0) { cuadrupla->arg1 = label; }
+                if (strcmp(cuadrupla->arg2,i->indice) == 0) { cuadrupla->arg2 = label; }
+                if (strcmp(cuadrupla->res ,i->indice) == 0) { cuadrupla->res  = label; }
+                cuadrupla = cuadrupla->siguente;
+            }
+            i = i->siguente;
+        }
+    }
+}

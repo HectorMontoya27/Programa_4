@@ -80,7 +80,7 @@ void eliminarCodigo(code *c){
 --Fecha de creacion: 13 Junio 2020
 */
 void imprimirCuadrupla(cuadru *c){
-    if (c != NULL) { printf("%s,\t%s,\t%s,\t%s\n", c->op, c->arg1, c->arg2, c->res); }
+    if (c != NULL) { printf("%s\t%s\t%s\t%s\n", c->op, c->arg1, c->arg2, c->res); }
 }
 
 /*
