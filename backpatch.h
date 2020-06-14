@@ -18,6 +18,9 @@ struct LISTA_INDICE{
     Indice* final;
 };
 
+int temp;
+int temp2;
+
 /* -------------------------Declaracion de Funciones -------------------------- */
 /* Creacion */
 Indice* nuevoIndice(char *i);                                         //Lista
