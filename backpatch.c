@@ -154,3 +154,28 @@ void backpatch(code *codigo, listaIndice *lista, char *label){
         }
     }
 }
+
+/*
+--Nombre Funcion: nuevaTemp
+--Descripcion: Funcion para crear una nueva temporal
+--Autor: El profesor
+--Fecha de creacion: Desconocido
+*/
+void nuevaTemp(char *dire){
+    char t[32];
+    sprintf(t, "t%d", temp++);
+    strcpy (dire,t);
+}
+
+/*
+--Nombre Funcion: nuevaEtiqueta()
+--Descripcion: Funacion para crear una nuava Etiqueta
+--Autor: Héctor Montoya Pérez
+--Fecha de creacion: 23 Mayo 2020
+--Ultima modificacion: 24 Mayo 2020
+*/
+void nuevaEtiqueta(char *dire){
+    char L[32];
+    sprintf(L, "L%d", temp2++);
+    strcpy (dire,L);
+}
