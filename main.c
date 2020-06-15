@@ -3,6 +3,7 @@
 #include <string.h>
 #include "cuadruplas.h"
 #include "backpatch.h"
+
 #include "tipos.h"
 
 int main(int argc, char const *argv[]) {
