@@ -161,10 +161,8 @@ void backpatch(code *codigo, listaIndice *lista, char *label){
 --Autor: El profesor
 --Fecha de creacion: Desconocido
 */
-void nuevaTemp(char *dire){
-    char t[32];
+void nuevaTemp(char *t){
     sprintf(t, "t%d", temp++);
-    strcpy (dire,t);
 }
 
 /*

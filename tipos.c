@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cuadruplas.h"
+#include "backpatch.h"
+#include "tipos.h"
 
 /* --------------------------- Formato de Documentacion ------------------------- */
 
@@ -29,13 +31,16 @@
 ∗ o la direccion original en caso de que no se realice
 --Autor: Soto Vázquez Patricia
 --Fecha de creacion: 14/06/2020
+--Fecha de modificacion:
+--Autor modificacion:
+--Descripcion de modificacion:
 */
 char *ampliar(char *dir, int t1, int t2, code *codigo){
     if (t1 != t2){
         int aux = max(t1, t2);
         if ( aux == -2){ return NULL; }
         if ( aux == t1){ return dir; }
-        char t[32];
+        char *t = malloc(sizeof(char) * 10);
         nuevaTemp(t);
         switch (aux){
             case 1:
@@ -48,7 +53,7 @@ char *ampliar(char *dir, int t1, int t2, code *codigo){
                 agregarCuadrupla(codigo,crearCuadrupla("(dreal)", dir ,"-", t));
                 break;
             default:
-                t = NULL;
+                strcpy(t,"");
                 break;
         }
         return t;
@@ -67,15 +72,15 @@ char *ampliar(char *dir, int t1, int t2, code *codigo){
 ∗ o la direccion original en caso de que no se realice
 --Autor: Soto Vázquez Patricia
 --Fecha de creacion: 14/06/2020
-*/                           
+*/
 char *reducir(char *dir, int t1, int t2, code *codigo){
     if (t1 != t2){
-        int aux = min(t1, t2); 
-        if ( aux == -2){ return NULL; } 
+        int aux = min(t1, t2);
+        if ( aux == -2){ return NULL; }
         if ( aux == t1){ return dir; }
-        char t[32];
+        char *t = malloc(sizeof(char) * 5);
         nuevaTemp(t);
-        switch (aux){ 
+        switch (aux){
             case 0:
                 agregarCuadrupla(codigo,crearCuadrupla("(car)", dir ,"-", t));
                 break;
@@ -86,7 +91,7 @@ char *reducir(char *dir, int t1, int t2, code *codigo){
                 agregarCuadrupla(codigo,crearCuadrupla("(real)", dir ,"-", t));
                 break;
             default:
-                t = NULL;
+                strcpy(t,"");
                 break;
         }
         return t;
@@ -104,12 +109,12 @@ char *reducir(char *dir, int t1, int t2, code *codigo){
 --Fecha de creacion: 14/06/2020
 */
 int max(int t1, int t2){
-    if ((0 <= t1 <= 3) && (0 <= t2 <= 3)){
+    if ((0 <= t1 && t1 <= 3) && (0 <= t2 && t2 <= 3)){
         if (t1 > t2) { return t1; }
         else { return t2; }
     }
     else{
-        printf("El tipo no es valido");
+        printf("El tipo no es valido\n");
         return -2;
     }
 }
@@ -119,7 +124,7 @@ int max(int t1, int t2){
 /*
 --Nombre Funcion: min
 --Descripcion:∗Recibe dos tipos, cada uno es su indice hacia la tabla de tipos en la cima de la pila
-*retorna el indicie de menor dimension 
+*retorna el indicie de menor dimension
 --Autor: Soto Vázquez Patricia
 --Fecha de creacion: 14/06/2020
 */
@@ -129,7 +134,7 @@ int min(int t1, int t2){
         else { return t1; }
     }
     else{
-        printf("El tipo no es valido");
+        printf("El tipo no es valido\n");
         return -2;
     }
 }
