@@ -45,10 +45,16 @@ int main(int argc, char const *argv[]) {
     printf("El tipo maximo de 100 y 100 es: %d\n", max(100,100));
 
     printf("ent x, real y\n");
-    printf("reduccion y es: %s\n", reducir("y",2,1,codigo));
-    printf("ampliacion x es: %s\n", ampliar("x",1,2,codigo));
-    printf("ampliacion y es: %s\n", ampliar("y",2,1,codigo));
-    printf("reduccion x es: %s\n", reducir("x",1,2,codigo));
+    char r1[5], r2[5];
+    char a1[5], a2[5];
+    reducir(r1,"y",2,1,codigo);
+    ampliar(a1,"x",1,2,codigo);
+    ampliar(a2,"y",2,1,codigo);
+    reducir(r2,"x",1,2,codigo);
+    printf("reduccion y es: %s\n", r1);
+    printf("ampliacion x es: %s\n", a1);
+    printf("ampliacion y es: %s\n", a2);
+    printf("reduccion x es: %s\n", r2);
 
     imprimirCodigo(codigo);
 
